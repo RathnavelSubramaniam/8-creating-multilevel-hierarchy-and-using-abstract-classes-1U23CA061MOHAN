@@ -2,26 +2,25 @@
 class Animal {
 // Basic attributes and methods including abstract sound method
 String name;
-public Animal(String name ){
+int age;
+public Animal(String name ,int age){
     this.name = name;
+    this.age = age;
 }
 void eat(){
     System.out.println(name + " is eating.");
 }
 
 }
-abstract class AnimalSound{
-    abstract void makeSound();
-}
+
  class Mammal extends Animal {
 // Additional attributes and methods
-int legs;
-public Mammal(String name,int legs){
-    super(name);
-    this.legs = legs;
+public Mammal(String name,int age){
+    super(name,age);
+    
 }
 void walk(){
-    System.out.println(name + " is walking on "+ " legs.");
+    System.out.println(name + " is walking.");
 }
 }
 
@@ -29,17 +28,11 @@ void walk(){
 class Bird extends Animal {
 // Additional attributes and methods
 boolean canfly;
-public Bird(String name,boolean canfly){
-    super(name);
-    this.canfly = canfly;
+public Bird(String name,int age){
+    super(name,age);
 }
 void fly(){
-    if(canfly){
         System.out.println(name + " is flying.");
-    }
-    else{
-        System.out.println(name + " is canotfly.");
-    }
 }
 }
 
@@ -47,8 +40,8 @@ void fly(){
  class Parrot extends Bird {
 // Additional characteristics specific to Parrot
 String color;
-public Parrot(String name ,boolean canfly,String color){
-    super(name,canfly);
+public Parrot(String name ,int age,String color){
+    super(name,age);
     this.color = color;
 }
 void mimic(){
@@ -59,7 +52,7 @@ final void sleep(){
 }
 @Override
 public String toString(){
-    return "parrot: "+ name + ", Can Fly: "+ canfly + ", Color: "+ color;
+    return "Species: "+ name + ", Age: "+ age + ", Color: "+ color;
 }
 };
 
@@ -67,13 +60,15 @@ public String toString(){
 public class Practical8 {
 public static void main(String[] args) {
 // Instantiate and demonstrate object class methods
-Parrot parrot = new Parrot("colorful Parrot",true,"Green");
-parrot.eat();
-parrot.fly();
-parrot.mimic();
+Parrot parrot = new Parrot("Talking Parrot",2,"Green");
+Mammal lion1 = new Mammal("Lion",5);
+Bird eagle = new Bird("Eagle",3);
+Parrot lion2 = new Parrot("Lion",5,"Yellow");
+System.out.println("Species: "+ lion1.name+ ", Age: "+ lion1.age);
+System.out.println("Species: "+ eagle.name+ ", Age: "+ eagle.age);
+System.out.println("Species: "+ parrot.name+ ", Age: "+ parrot.age);
 
-parrot.sleep();
-
-System.out.println(parrot.toString());
+System.out.println("Are lion and eagle equal? "+ lion1.equals(eagle));
+System.out.println("Are lion and lion equal? "+ lion1.equals(lion1));
 }
 }
